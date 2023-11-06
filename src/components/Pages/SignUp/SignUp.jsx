@@ -1,6 +1,7 @@
+import { updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxiosSecure";
@@ -12,7 +13,7 @@ const SignUp = () => {
   const { createUser,signInWithGoogle } = useAuth();
   const [registerError, setRegisterError] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const axios = useAxios();
 
   const handleRegister = (e) => {
@@ -40,9 +41,13 @@ const SignUp = () => {
     } else {
       createUser(email, password)
         .then((result) => {
+          const user = result.user
           console.log(result.user);
-          console.log(location);
-          Swal.fire({
+          updateProfile(user, {
+            displayName: name,
+          });
+      
+            Swal.fire({
             position: 'top',
             icon: 'success',
             title: 'Signup Successfully',
@@ -50,20 +55,26 @@ const SignUp = () => {
             timer: 1500
           })
           navigate(location?.state ? location.state : '/')
-          e.target.reset();
+          e.target.reset();    
         })
         .catch((error) => {
           console.error(error);
         });
     }
-
-    
+ 
   };
 
   const handleGoogleSignin = () =>{
     signInWithGoogle()
     .then(result =>{
       console.log(result.user);
+      const googleuser = result.user
+      const googleUserData = {
+        displayName: googleuser.displayName,
+        email: googleuser.email,
+        photoURL:googleuser.photoURL
+        // Add any other user data you want to store
+      };
       Swal.fire({
         position: 'top',
         icon: 'success',
@@ -73,6 +84,9 @@ const SignUp = () => {
       })
       console.log(location);
       navigate(location?.state ? location.state : '/')
+
+      axios.post('/users', googleUserData)
+      .then(res => console.log(res.data))
     })
     .catch(error =>{
       console.error(error);
@@ -83,7 +97,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <div data-aos='zoom-in' className="mb-10">
+      <div className="mb-10">
         <h2 className="text-3xl my-3 text-center font-bold">SIGN UP</h2>
         <form
         onSubmit={handleRegister}

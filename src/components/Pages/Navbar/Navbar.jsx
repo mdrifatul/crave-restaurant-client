@@ -72,19 +72,19 @@ const Navbar = () => {
                 className="mt-10 dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <NavLink
-                  to="/user"
+                  to="/addedfood"
                   className="px-4 py-2 hover:bg-base-300 rounded-lg"
                 >
                   My added food
                 </NavLink>
                 <NavLink
-                  to="/user/orders"
+                  to="/addfood"
                   className="px-4 py-2 hover:bg-base-300 rounded-lg"
                 >
                   Add food
                 </NavLink>
                 <NavLink
-                  to="/user/orders"
+                  to="/order"
                   className="px-4 py-2 hover:bg-base-300 rounded-lg"
                 >
                   Orders

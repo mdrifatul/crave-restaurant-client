@@ -43,7 +43,7 @@ const handleGoogleSignin = () =>{
 
 
   return (
-    <div data-aos='zoom-in' >
+    <div className='my-10'>
     <h2 className="text-3xl my-3 text-center font-bold">Login</h2>
     <form onSubmit={handleLogin} className="w-4/5 md:w-1/4 mx-auto">
         <div className="form-control">

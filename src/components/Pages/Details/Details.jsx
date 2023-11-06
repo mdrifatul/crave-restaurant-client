@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 const Details = () => {
   // const {id} = useParams();
   const loader = useLoaderData();
-  const {food_name,food_image,food_category,price,food_origin,description
+  const {_id,food_name,food_image,food_category,price,food_origin,description
   } = loader
  
   return (
@@ -16,7 +16,7 @@ const Details = () => {
           <p className="text-lg font-semibold">Price: $ {price}</p>
           <p className="text-base">{description}</p>
           <div className="card-actions justify-start mt-3">
-            <Link><button className="btn btn-white text-[#7DA640]">Order</button></Link>
+            <Link loader={loader} to={`/purchase/${_id}`}><button className="btn btn-white text-[#7DA640]">Order</button></Link>
           </div>
         </div>
         </div>

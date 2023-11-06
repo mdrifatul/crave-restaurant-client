@@ -12,7 +12,7 @@ const Foods = () => {
       setFood(res.data)
     })
   },[axios])
-
+// console.log(food);
 
   return (
   <>
