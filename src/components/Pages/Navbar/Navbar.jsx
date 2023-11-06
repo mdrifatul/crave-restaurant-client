@@ -19,7 +19,7 @@ const navLink = (
       </NavLink>
     </span>
     <span className="flex justify-center items-center p-2 text-lg mx-2">
-    <NavLink to="/allfood" className={({isActive}) => isActive ? activeLink:normalLink} >All Food Items</NavLink>
+    <NavLink to="/fooditems" className={({isActive}) => isActive ? activeLink:normalLink} >All Food Items</NavLink>
     </span>
     <span className="flex justify-center items-center p-2 text-lg">
     <NavLink to="/blog" className={({isActive}) => isActive ? activeLink:normalLink}>Blog</NavLink>
@@ -39,7 +39,7 @@ const Navbar = () => {
 
   return (
     <div className="">
-      <div className="navbar bg-base-100 w-11/12 mx-auto">
+      <div className="navbar bg-white w-11/12 mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -61,11 +61,37 @@ const Navbar = () => {
         {user ? (
           <>
             <p className="invisible md:visible">{user.email}</p>
-            <label className="mr-2">
-              <div className="w-10 rounded-full mx-auto md:mr-2 md:ml-2">
+            <div className="dropdown dropdown-end flex">
+              <label tabIndex={0} className="mr-2">
+              <div className="w-10 rounded-full mx-auto md:mx-2 ">
                 <img className="rounded-full" src={user.photoURL || userPicture} />
               </div>
             </label>
+            <div
+                tabIndex={0}
+                className="mt-10 dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <NavLink
+                  to="/user"
+                  className="px-4 py-2 hover:bg-base-300 rounded-lg"
+                >
+                  My added food
+                </NavLink>
+                <NavLink
+                  to="/user/orders"
+                  className="px-4 py-2 hover:bg-base-300 rounded-lg"
+                >
+                  Add food
+                </NavLink>
+                <NavLink
+                  to="/user/orders"
+                  className="px-4 py-2 hover:bg-base-300 rounded-lg"
+                >
+                  Orders
+                </NavLink>
+              </div>
+              </div>
+                      
             <button
               className="btn btn-sm bg-[#7DA640] text-white hover:"
               onClick={handlelogOut}

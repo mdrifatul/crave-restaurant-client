@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import useAxios from "../../Hooks/useAxiosSecure";
 
 
 
@@ -12,6 +13,7 @@ const SignUp = () => {
   const [registerError, setRegisterError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const axios = useAxios();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -20,8 +22,15 @@ const SignUp = () => {
     const email = form.get("email");
     const password = form.get("password");
     const photourl = form.get("photourl")
-    console.log(name,email, password, photourl);
+    const user = {
+      name,email, password, photourl
+    }
     setRegisterError("");
+
+    // add user info in database
+    axios.post('/users',user)
+    .then(res=> 
+    console.log(res.data))
 
 
     if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{6,})/.test(password)) {
@@ -47,6 +56,8 @@ const SignUp = () => {
           console.error(error);
         });
     }
+
+    
   };
 
   const handleGoogleSignin = () =>{
