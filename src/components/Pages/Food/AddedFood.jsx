@@ -1,22 +1,23 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useAxios from "../../Hooks/useAxiosSecure";
+import AddedFoodCard from "./AddedFoodCard";
 
 const AddedFood = () => {
+  const axios = useAxios() 
+  const [addedFood, setAddedFood] = useState([]);
+
+  useEffect(()=>{
+    axios.get('/addFood')
+    .then(res=> setAddedFood(res.data))
+  },[axios])
+
   return (
-    <div className="card card-compact bg-white shadow-xl rounded-xl">
-        <figure><img src="https://i.ibb.co/PQm08p6/aurelien-lemasson-theobald-x00-Cz-Bt4-Dfk-unsplash.jpg" alt="food" /></figure>
-        <div className="card-body text-[#7DA640] rounded-b-xl">
-          <h2 className="card-title font-bold text-2xl"></h2>
-          <p className="text-xl font-semibold"></p>
-          <div className="flex">
-          <p className="text-lg font-semibold"></p>
-          </div>
-          <div className="card-actions justify-center mt-3">
-            <Link >
-            <button className="btn btn-sm bg-[#7DA640] text-white">update</button>
-            </Link>
-          </div>
-        </div>
-      </div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-10/12 lg:w-10/12 md:w-9/12 mx-auto my-20">
+      {
+      addedFood.map(food => <AddedFoodCard key={food._id} food={food}></AddedFoodCard>)
+      }
+    </div>
+    
   );
 };
 

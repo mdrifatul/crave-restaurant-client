@@ -1,8 +1,23 @@
+import { useEffect, useState } from "react";
+import useAuth from "../../Hooks/useAuth";
+import useAxios from "../../Hooks/useAxiosSecure";
+import OrderList from './OrderList';
 
 const OrderFood = () => {
+  const axios = useAxios()
+  const {user} = useAuth()
+  const [orderFood, setOrderFood] = useState([])
+
+  useEffect(()=>{
+    axios.get(`/order?email=${user?.email}`)
+    .then(res => setOrderFood(res.data))
+  },[axios,user])
+
   return (
-    <div>
-      
+    <div className="my-10 w-11/12 mx-auto">
+      {
+        orderFood.map(order => <OrderList key={order._id} orderFood={orderFood} setOrderFood={setOrderFood} order={order}></OrderList>)
+      }
     </div>
   );
 };

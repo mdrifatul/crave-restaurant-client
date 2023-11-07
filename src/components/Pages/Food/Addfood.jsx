@@ -3,8 +3,6 @@ import useAxios from "../../Hooks/useAxiosSecure";
 const Addfood = () => {
   const axios = useAxios();
 
-
-
   const handleAddfood = e =>{
     e.preventDefault();
       const form = new FormData(e.currentTarget);
@@ -20,7 +18,7 @@ const Addfood = () => {
       name,price, username, quantity,category, image,description,origin 
       }
 
-      axios.post('/order', userinfo)
+      axios.post('/addFood', userinfo)
       .then(res => {
         res.data
       })
@@ -32,7 +30,6 @@ const Addfood = () => {
     <div className="w-8/12 mx-auto my-20">
         <div>
         </div>
-          <h2 className='text-center text-3xl'> </h2>
           <form onSubmit={handleAddfood} >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="form-control">

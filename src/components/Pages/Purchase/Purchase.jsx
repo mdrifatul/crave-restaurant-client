@@ -6,7 +6,8 @@ import useAxios from "../../Hooks/useAxiosSecure";
 const Purchase = () => {
     const axios = useAxios()
     const loader = useLoaderData();
-    const user = useAuth()
+    const {user} = useAuth()
+    // console.log(user.displayName);
     const {food_name,price} = loader
 
 
@@ -23,7 +24,7 @@ const Purchase = () => {
         const userinfo = {
         name,email,price, username, quantity, date,image 
         }
-        axios.post('/addFood',userinfo)
+        axios.post('/order',userinfo)
           .then(res=>{
             console.log(res.data)
             Swal.fire({
@@ -53,13 +54,13 @@ const Purchase = () => {
                       <input type="number" name="price" className="input input-bordered" placeholder="price" defaultValue={price}/>
                   </div>
                   <div className="form-control">
-                      <input type="text" name="username" className="input input-bordered" placeholder="user name" value={user.displayName}/>
+                      <input type="text" name="username" className="input input-bordered" placeholder="user name"  defaultValue={user.displayName}  readOnly/>
                   </div>
                   <div className="form-control">
-                      <input type="text" name="email" placeholder="email" className="input input-bordered" value={user.email}/>
+                      <input type="text" name="email" placeholder="email" className="input input-bordered" defaultValue={user.email} readOnly/>
                   </div>
                   <div className="form-control">
-                      <input type="number" className="input input-bordered" placeholder="quantity" defaultValue={0}/>
+                      <input type="number" className="input input-bordered" placeholder="quantity" name="quantity"/>
                   </div>
                   <div className="form-control">
                       <input type="date" name="date" className="input input-bordered" />

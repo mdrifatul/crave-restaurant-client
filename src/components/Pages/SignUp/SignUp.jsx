@@ -1,7 +1,7 @@
 import { updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxiosSecure";
@@ -13,7 +13,7 @@ const SignUp = () => {
   const { createUser,signInWithGoogle } = useAuth();
   const [registerError, setRegisterError] = useState("");
   const navigate = useNavigate();
-  // const location = useLocation();
+  const location = useLocation();
   const axios = useAxios();
 
   const handleRegister = (e) => {

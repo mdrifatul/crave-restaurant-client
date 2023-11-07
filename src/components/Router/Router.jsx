@@ -9,6 +9,7 @@ import Login from "../Pages/Login/Login";
 import OrderFood from "../Pages/OrderFood/OrderFood";
 import Purchase from "../Pages/Purchase/Purchase";
 import SignUp from "../Pages/SignUp/SignUp";
+import Update from "../Pages/Update/Update";
 import Root from "./Root";
 
 const Router = createBrowserRouter([
@@ -36,6 +37,11 @@ const Router = createBrowserRouter([
         loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
       },
       {
+        path:'/update/:id',
+        element: <Update></Update>,
+        loader: ({params}) => fetch(`http://localhost:5000/orderupdate/${params.id}`)
+      },
+      {
         path:'/login',
         element: <Login></Login>
       },
@@ -54,7 +60,8 @@ const Router = createBrowserRouter([
       {
         path:'/order',
         element: <OrderFood></OrderFood>
-      }
+      },
+      
 
     ]
   },
