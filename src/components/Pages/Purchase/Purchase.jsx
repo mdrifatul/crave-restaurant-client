@@ -8,7 +8,7 @@ const Purchase = () => {
     const loader = useLoaderData();
     const {user} = useAuth()
     // console.log(user.displayName);
-    const {food_name,price} = loader
+    const {food_name,price,food_image} = loader
 
 
     const handleAddFood = (e) =>{
@@ -54,10 +54,10 @@ const Purchase = () => {
                       <input type="number" name="price" className="input input-bordered" placeholder="price" defaultValue={price}/>
                   </div>
                   <div className="form-control">
-                      <input type="text" name="username" className="input input-bordered" placeholder="user name"  defaultValue={user.displayName}  readOnly/>
+                      <input type="text" name="username" className="input input-bordered" placeholder="user name"  defaultValue={user?.displayName}  readOnly/>
                   </div>
                   <div className="form-control">
-                      <input type="text" name="email" placeholder="email" className="input input-bordered" defaultValue={user.email} readOnly/>
+                      <input type="text" name="email" placeholder="email" className="input input-bordered" defaultValue={user?.email} readOnly/>
                   </div>
                   <div className="form-control">
                       <input type="number" className="input input-bordered" placeholder="quantity" name="quantity"/>
@@ -67,7 +67,7 @@ const Purchase = () => {
                   </div>
               </div>
               <div className="form-control">
-                <input type="text" name="image" className="input input-bordered mt-5" placeholder="PhotoUrl"/>
+                <input type="text" name="image" className="input input-bordered mt-5" placeholder="PhotoUrl" defaultValue={food_image}/>
                 </div>
               <div className="form-control mt-6">
                   <input className="btn bg-[#7DA640] text-white btn-block" type="submit" value="Purchase" />

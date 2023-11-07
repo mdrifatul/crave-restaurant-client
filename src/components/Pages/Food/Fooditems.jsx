@@ -31,9 +31,6 @@ const Fooditems = () => {
       </div>
 
       <div className="grid grid-cols-3 gap-6 w-10/12 mx-auto my-20">
-      {/* {
-        items.map(item=> <FoodCard item={item} key={item._id}></FoodCard>)
-      } */}
       {
         filtervalue == "" ?
         items.map(item=> <FoodCard item={item} key={item._id}></FoodCard>)

@@ -1,12 +1,13 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxiosSecure";
 
 const Update = () => {
     const axios = useAxios()
-    // const {id} = useParams()
-    // console.log(id);
+    const {id} = useParams()
+    console.log(id);
     const loader = useLoaderData();
-    console.log(loader);
+    const {name,email,price,username,quantity,date,image} = loader
 
 
 const handleupdate = e =>{
@@ -24,11 +25,19 @@ const handleupdate = e =>{
     }
     // console.log(userinfo);
 
-    // axios.patch('/update', userinfo)
-    // .then(res =>{
-    //     const data = res.data
-    //     console.log(data);
-    // })
+    axios.patch(`/updateaddFood/${id}`, userinfo)
+    .then(res =>{
+        const data = res.data
+        console.log(data);
+        if(data.modifiedCount >0){
+            Swal.fire({
+              title: 'Success',
+              text: 'update Successfully',
+              icon: 'success',
+              confirmButtonText: 'Cool'
+            })
+          }
+    })
 
 }
 
@@ -40,26 +49,26 @@ const handleupdate = e =>{
           <form onSubmit={handleupdate}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="form-control">
-                      <input type="text" name="name" className="input input-bordered" placeholder="food name" />
+                      <input type="text" name="name" className="input input-bordered" placeholder="food name" defaultValue={name}/>
                   </div>
                   <div className="form-control">
-                      <input type="number" name="price" className="input input-bordered" placeholder="price" />
+                      <input type="number" name="price" className="input input-bordered" placeholder="price" defaultValue={price} readOnly/>
                   </div>
                   <div className="form-control">
-                      <input type="text" name="username" className="input input-bordered" placeholder="user name" />
+                      <input type="text" name="username" className="input input-bordered" placeholder="user name"  defaultValue={username}/>
                   </div>
                   <div className="form-control">
-                      <input type="text" name="email" placeholder="email" className="input input-bordered" />
+                      <input type="text" name="email" placeholder="email" className="input input-bordered"  defaultValue={email}/>
                   </div>
                   <div className="form-control">
-                      <input type="number" className="input input-bordered" placeholder="quantity" name="quantity"/>
+                      <input type="number" className="input input-bordered" placeholder="quantity" name="quantity"  defaultValue={quantity}/>
                   </div>
                   <div className="form-control">
-                      <input type="date" name="date" className="input input-bordered" />
+                      <input type="date" name="date" className="input input-bordered" defaultValue={date}/>
                   </div>
               </div>
               <div className="form-control">
-                <input type="text" name="image" className="input input-bordered mt-5" placeholder="PhotoUrl"/>
+                <input type="text" name="image" className="input input-bordered mt-5" placeholder="PhotoUrl" defaultValue={image}/>
                 </div>
               <div className="form-control mt-6">
                   <input className="btn bg-[#7DA640] text-white btn-block" type="submit" value="Update" />

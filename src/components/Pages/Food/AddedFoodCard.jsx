@@ -4,7 +4,7 @@ const AddedFoodCard = ({food}) => {
   const {_id,name,price,category,image} = food
   return (
     <div className="card card-compact bg-white shadow-xl rounded-xl">
-    <figure><img src={image} alt="food" /></figure>
+    <figure><img src={image} alt="food" className="h-52 w-full"/></figure>
     <div className="card-body text-[#7DA640] rounded-b-xl">
       <h2 className="card-title font-bold text-2xl capitalize">{name}</h2>
       <p className="text-xl font-semibold">{category}</p>

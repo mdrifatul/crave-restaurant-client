@@ -39,7 +39,7 @@ const Router = createBrowserRouter([
       {
         path:'/update/:id',
         element: <Update></Update>,
-        loader: ({params}) => fetch(`http://localhost:5000/orderupdate/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/addfoodUpdate/${params.id}`)
       },
       {
         path:'/login',
