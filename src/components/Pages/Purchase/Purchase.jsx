@@ -67,7 +67,7 @@ const Purchase = () => {
                   </div>
               </div>
               <div className="form-control">
-                <input type="text" name="image" className="input input-bordered mt-5" placeholder="PhotoUrl" defaultValue={food_image}/>
+                <input type="text" name="image" className="input input-bordered mt-5" placeholder="PhotoUrl" defaultValue={food_image} readOnly/>
                 </div>
               <div className="form-control mt-6">
                   <input className="btn bg-[#7DA640] text-white btn-block" type="submit" value="Purchase" />

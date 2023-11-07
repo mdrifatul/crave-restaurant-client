@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Blog from "../Pages/Blog/Blog";
 import Details from "../Pages/Details/Details";
 import Error from "../Pages/Error/Error";
 import AddedFood from "../Pages/Food/AddedFood";
@@ -10,6 +11,7 @@ import OrderFood from "../Pages/OrderFood/OrderFood";
 import Purchase from "../Pages/Purchase/Purchase";
 import SignUp from "../Pages/SignUp/SignUp";
 import Update from "../Pages/Update/Update";
+import PrivateRouter from './PrivateRoute';
 import Root from "./Root";
 
 const Router = createBrowserRouter([
@@ -28,7 +30,7 @@ const Router = createBrowserRouter([
       },
       {
         path:'/details/:id',
-        element: <Details></Details>,
+        element: <PrivateRouter><Details></Details></PrivateRouter>,
         loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
       },
       {
@@ -61,6 +63,10 @@ const Router = createBrowserRouter([
         path:'/order',
         element: <OrderFood></OrderFood>
       },
+      {
+        path:'/blog',
+        element: <Blog></Blog>
+      }
       
 
     ]
