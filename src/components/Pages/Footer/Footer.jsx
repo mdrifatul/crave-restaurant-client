@@ -3,7 +3,7 @@ import logo from "../../../assets/image/352514_local_restaurant_icon.png";
 
 const Footer = () => {
   return (
-    <>
+    <div data-aos="fade-up">
     <footer className="footer p-10 text-neutral-content felx justify-between md:px-20 lg:px-36 border-t-2 border-t-[#cbe8a2]">
         <nav>
           <div className="flex items-center">
@@ -29,7 +29,7 @@ const Footer = () => {
         <p className="my-4 text-gray-600 text-center">
           Copyright © 2023 Crave | Powered by Crave.
         </p>
-      </>
+      </div>
   );
 };
 

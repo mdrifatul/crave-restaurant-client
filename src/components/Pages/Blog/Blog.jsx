@@ -1,5 +1,9 @@
+import { Helmet } from "react-helmet";
+
 const Blog = () => {
   return (
+    <>
+    <Helmet><title>Crave | Blog</title></Helmet>
     <div className="my-20 w-6/12 mx-auto">
       <div>
         <h1 className="text-4xl mb-6">What is One way data binding?</h1>
@@ -21,6 +25,8 @@ const Blog = () => {
         <p>MongoDB is a document-oriented database that stores all of its data as Binary JSON (BSON) documents. BSON allows you to serialize many forms of data. Using BSON documents allows you to store unstructured, semi-structured, and structured data. Instead of a database schema, MongoDB uses a flexible approach, storing documents in collections</p>
       </div>
     </div>
+    </>
+    
   );
 };
 

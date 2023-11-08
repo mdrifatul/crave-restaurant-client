@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import useAxios from "../../Hooks/useAxiosSecure";
 
 const Addfood = () => {
@@ -28,8 +29,7 @@ const Addfood = () => {
 
   return (
     <div className="w-8/12 mx-auto my-20">
-        <div>
-        </div>
+        <Helmet><title>Crave | Add Food</title></Helmet>
           <form onSubmit={handleAddfood} >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="form-control">

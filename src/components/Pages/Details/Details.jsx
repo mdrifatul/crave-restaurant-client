@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 
 const Details = () => {
@@ -7,7 +8,9 @@ const Details = () => {
   } = loader
  
   return (
-    <div className="card card-compact bg-[#7DA640] shadow-xl flex w-8/12 mx-auto my-20 rounded-none ">
+    <div>
+      <Helmet><title>Crave | Details</title></Helmet>
+      <div className="card card-compact bg-[#7DA640] shadow-xl flex w-8/12 mx-auto my-20 rounded-none ">
         <figure><img className="w-full h-96" src="https://i.ibb.co/PQm08p6/aurelien-lemasson-theobald-x00-Cz-Bt4-Dfk-unsplash.jpg" alt="food" /></figure>
         <div className="card-body text-white">
           <h2 className="card-title font-bold text-3xl">{food_name}</h2>
@@ -20,6 +23,7 @@ const Details = () => {
           </div>
         </div>
         </div>
+    </div>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
@@ -42,8 +43,7 @@ const Purchase = () => {
 
   return (
     <div className="w-8/12 mx-auto my-20">
-        <div>
-        </div>
+        <Helmet><title>Crave | Purchase</title></Helmet>
           <h2 className='text-center text-3xl'> </h2>
           <form onSubmit={handleAddFood} >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

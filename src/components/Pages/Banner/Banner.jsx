@@ -1,7 +1,7 @@
 
 const Banner = () => {
   return (
-    <div className="hero min-h-screen bg-white">
+    <div data-aos="zoom-in-up" className="hero min-h-screen bg-white">
   <div className="hero-content flex-col lg:flex-row-reverse w-11/12 justify-around my-10">
     <img src="https://i.ibb.co/2K3FtxF/home-img.png" className="max-w-sm rounded-lg w-5/6 md:w-full" />
     <div className="md:w-5/6 lg:w-3/6 my-10">

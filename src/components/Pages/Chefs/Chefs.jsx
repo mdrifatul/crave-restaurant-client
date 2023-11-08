@@ -1,7 +1,7 @@
 
 const Chefs = () => {
   return (
-    <div className="w-9/12 md:w-9/12 lg:w-10/12 mx-auto my-24">
+    <div data-aos="fade-up" className="w-9/12 md:w-9/12 lg:w-10/12 mx-auto my-24">
       <h1 className="text-6xl mb-20 text-center text-[#7DA640] font-bold italic">Master Chefs</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-10">
       <div className="card card-compact bg-base-100 shadow-xl h-96">

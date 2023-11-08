@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxiosSecure";
@@ -43,8 +44,7 @@ const handleupdate = e =>{
 
   return (
     <div className="w-8/12 mx-auto my-20">
-        <div>
-        </div>
+        <Helmet><title>Crave | Update</title></Helmet>
           <h2 className='text-center text-3xl mb-10'>Updates</h2>
           <form onSubmit={handleupdate}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

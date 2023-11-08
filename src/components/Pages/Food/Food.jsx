@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Food = ({item}) => {
   const {_id,food_name, food_image, food_category, price, quantity} = item;
   return (
-    <div>
+    <div data-aos="fade-up">
       <div className="card card-compact bg-white shadow-xl rounded-xl">
         <figure><img src={food_image} alt="food" className="h-52 w-full"/></figure>
         <div className="card-body text-[#7DA640] rounded-b-xl">
