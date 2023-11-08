@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import { Helmet } from 'react-helmet';
 import useAxios from "../../Hooks/useAxiosSecure";
+import FoodCard from "./FoodCard";
 
 const Fooditems = () => {
   const axios = useAxios();
   const [items, setItems]  = useState([]);
   const [search, setSearch] = useState('');
   const [filtervalue, setFiltervalue] = useState([])
+  const [page, setPage] = useState(1)
+  const [total , setTotal] = useState(null);
+  const limit = 6;
 
   useEffect(() =>{
     axios.get('/foods')
     .then(res=>{
-      setItems(res.data)
+      setItems(res.data?.result)
+      setTotal(res.data?.total)
+      console.log(res);
     })
   },[axios])
 
@@ -20,6 +26,22 @@ const Fooditems = () => {
     const filterCard = items.filter(card => card.food_name.toLowerCase().includes(searchvalue))
     setFiltervalue(filterCard)
   }
+
+  const handlePrevious = () =>{
+    if(page > 1 ){ 
+      setPage(page -1);
+    }
+  }
+  const handleNext = () =>{
+    if(page < totalpage){
+      setPage(page + 1);
+    }
+  }
+
+  const totalpage = Math.ceil(total / limit)
+  console.log(totalpage);
+
+
 
   // console.log(filtervalue);
 
@@ -32,20 +54,27 @@ const Fooditems = () => {
       </div>
       <div>
       <div className="grid grid-cols-3 gap-6 w-10/12 mx-auto my-20">
-      {/* {
+      {
         filtervalue == "" ?
-        items.map(item=> <FoodCard item={item} key={item._id}></FoodCard>)
+        items.map((item)=> <FoodCard item={item} key={item._id}></FoodCard>)
         : 
         filtervalue.map(item => <FoodCard item={item} key={item._id}></FoodCard>)
-      } */}
+      }
       </div>
       <div className="text-center mb-20">
-      <div className="join">
-        <button className="join-item btn bg-[#7DA640] text-white">«</button>
-        <button className="join-item btn btn-active">1</button>
-        <button className="join-item btn ">2</button>
-        <button className="join-item btn">3</button>
-        <button className="join-item btn bg-[#7DA640] text-white">»</button>
+      <div className="join border border-[#7DA640]">
+        <button onClick={handlePrevious} className="join-item btn text-[#7DA640]">«</button>
+
+        {Array(totalpage).fill(0).map((item, index)=>{
+          const pageNumber = index + 1;
+          <button
+          key={pageNumber} 
+          onClick={() => setPage(pageNumber)}
+          className={`${pageNumber === page ? "join-item btn": "join-item bg-[#7DA640]"}`}>{pageNumber}</button>
+        })
+        }
+        
+        <button onClick={handleNext} className="join-item btn text-[#7DA640]">»</button>
       </div>
       </div>
     </div>
