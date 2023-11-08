@@ -8,24 +8,19 @@ const Fooditems = () => {
   const [items, setItems]  = useState([]);
   const [search, setSearch] = useState('');
   const [filtervalue, setFiltervalue] = useState([])
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(null)
   const [total , setTotal] = useState(null);
   const limit = 6;
 
+
   useEffect(() =>{
-    axios.get('/foods')
+    axios.get(`/foods?page=${page}&limit=${limit}`)
     .then(res=>{
       setItems(res.data?.result)
       setTotal(res.data?.total)
       console.log(res);
     })
-  },[axios])
-
-  const handleClick = () =>{
-    const searchvalue = search.toLowerCase();
-    const filterCard = items.filter(card => card.food_name.toLowerCase().includes(searchvalue))
-    setFiltervalue(filterCard)
-  }
+  },[axios,page,limit])
 
   const handlePrevious = () =>{
     if(page > 1 ){ 
@@ -38,12 +33,19 @@ const Fooditems = () => {
     }
   }
 
-  const totalpage = Math.ceil(total / limit)
+  // const totalpage = Math.ceil(total / limit)
+  // console.log(totalpage);
+
+  const numberOfpage = Math.ceil(total/limit)
+  const totalpage = [...Array(numberOfpage).keys()]
   console.log(totalpage);
 
+  const handleClick = () =>{
+    const searchvalue = search.toLowerCase();
+    const filterCard = items.filter(card => card.food_name.toLowerCase().includes(searchvalue))
+    setFiltervalue(filterCard)
+  }
 
-
-  // console.log(filtervalue);
 
   return (
     <>
@@ -65,15 +67,19 @@ const Fooditems = () => {
       <div className="join border border-[#7DA640]">
         <button onClick={handlePrevious} className="join-item btn text-[#7DA640]">«</button>
 
-        {Array(totalpage).fill(0).map((item, index)=>{
-          const pageNumber = index + 1;
+        {/* {totalpage.map((item)=>
           <button
-          key={pageNumber} 
-          onClick={() => setPage(pageNumber)}
-          className={`${pageNumber === page ? "join-item btn": "join-item bg-[#7DA640]"}`}>{pageNumber}</button>
-        })
-        }
-        
+          key={item+1} 
+          onClick={() => setPage(item +1)}
+          className={`${item+1 === page ? "join-item btn btn-ghost": "join-item bg-[#7DA640]"}`}>{item +1}</button>
+        )
+        }  */}
+        {
+          totalpage.map(item =>
+          <button key={item +1} onClick={() => setPage(item+1)} className="join-item btn">{item +1}</button>
+          )     
+        } 
+
         <button onClick={handleNext} className="join-item btn text-[#7DA640]">»</button>
       </div>
       </div>
