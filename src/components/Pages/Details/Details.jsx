@@ -10,8 +10,8 @@ const Details = () => {
   return (
     <div>
       <Helmet><title>Crave | Details</title></Helmet>
-      <div className="card card-compact bg-[#7DA640] shadow-xl flex w-8/12 mx-auto my-20 rounded-none ">
-        <figure><img className="w-full h-96" src={food_image} alt="food" /></figure>
+      <div className="card card-compact bg-[#7DA640] shadow-xl flex flex-row w-9/12 mx-auto my-20 rounded-xl">
+        <figure><img className="w-full h-96 rounded-xl" src={food_image} alt="food" /></figure>
         <div className="card-body text-white">
           <h2 className="card-title font-bold text-3xl">{food_name}</h2>
           <p className="text-2xl font-semibold">{food_category}</p>
@@ -22,7 +22,7 @@ const Details = () => {
             <Link loader={loader} to={`/purchase/${_id}`}><button className="btn btn-white text-[#7DA640]">Order</button></Link>
           </div>
         </div>
-        </div>
+      </div>
     </div>
   );
 };

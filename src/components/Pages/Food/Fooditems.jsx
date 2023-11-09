@@ -11,7 +11,7 @@ const Fooditems = () => {
   const [items, setItems]  = useState([]);
   const [search, setSearch] = useState('');
   const [filtervalue, setFiltervalue] = useState([])
-  const [page, setPage] = useState(null)
+  const [page, setPage] = useState(1)
   const [total , setTotal] = useState(null);
   const limit = 6;
   console.log(items);
@@ -38,9 +38,9 @@ const Fooditems = () => {
      }
    }
    const handleNext = () =>{
-     if(page < totalpage){
+     if(page < totalpage.length){
        setPage(page +1);
-      console.log(setPage);
+       console.log("next page:",page + 1);
     }
    }
 
@@ -73,17 +73,9 @@ const Fooditems = () => {
       <div className="text-center mb-20">
       <div className="join border border-[#7DA640]">
         <button onClick={handlePrevious} className="join-item btn text-[#7DA640]">«</button>
-
-        {/* {totalpage.map((item)=>
-          <button
-          key={item+1} 
-          onClick={() => setPage(item +1)}
-          className={`${item+1 === page ? "join-item btn btn-ghost": "join-item bg-[#7DA640]"}`}>{item +1}</button>
-        )
-        }  */}
         {
           totalpage.map(item =>
-          <button key={item +1} onClick={() => setPage(item+1)} className="join-item btn">{item +1}</button>
+          <button key={item +1} onClick={() => setPage(item+1)} className={`${item+1 === page ? "join-item btn  bg-[#7DA640] w-10 ": "join-item btn-ghost w-10"}`}>{item +1}</button>
           )     
         } 
 

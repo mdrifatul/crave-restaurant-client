@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxiosSecure";
 import Loading from "../Loading/Loading";
@@ -7,6 +8,7 @@ import OrderList from "./OrderList";
 
 const OrderFood = () => {
   const axios = useAxios()
+  const navigate = useNavigate();
   const {user, loading} = useAuth()
   const [orderFood, setOrderFood] = useState([])
 
@@ -14,7 +16,6 @@ const OrderFood = () => {
     axios.get(`/order?email=${user?.email}`)
     .then(res => setOrderFood(res.data))
   },[axios,user])
-
 
   // const {data,isLoading} = useQuery({
   //   queryKey: ["foodOrder",user?.email],
