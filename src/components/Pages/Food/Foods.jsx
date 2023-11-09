@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import useAxios from "../../Hooks/useAxiosSecure";
-import Food from "./Food";
+import Food from './Food';
 
 const Foods = () => {
   const axios = useAxios();
@@ -9,7 +9,7 @@ const Foods = () => {
   useEffect(() =>{
     axios.get('/foods?sortField=order_count&sortOrder=desc')
     .then(res=>{
-      setFood(res?.data?.result)
+      setFood(res.data?.result)
     })
   },[axios])
 
