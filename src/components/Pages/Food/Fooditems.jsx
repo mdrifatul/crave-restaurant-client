@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { Helmet } from 'react-helmet';
+import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxiosSecure";
+import Loading from "../Loading/Loading";
 import FoodCard from "./FoodCard";
 
 const Fooditems = () => {
   const axios = useAxios();
+  const {loading} = useAuth();
   const [items, setItems]  = useState([]);
   const [search, setSearch] = useState('');
   const [filtervalue, setFiltervalue] = useState([])
@@ -55,7 +58,9 @@ const Fooditems = () => {
         <button onClick={handleClick} className="btn join-item bg-[#7DA640] text-white">Search</button>
       </div>
       <div>
-      <div className="grid grid-cols-3 gap-6 w-10/12 mx-auto my-20">
+      
+      {loading? <Loading></Loading>:
+        <div className="grid grid-cols-3 gap-6 w-10/12 mx-auto my-20">
       {
         filtervalue == "" ?
         items.map((item)=> <FoodCard item={item} key={item._id}></FoodCard>)
@@ -63,6 +68,7 @@ const Fooditems = () => {
         filtervalue.map(item => <FoodCard item={item} key={item._id}></FoodCard>)
       }
       </div>
+      }
       <div className="text-center mb-20">
       <div className="join border border-[#7DA640]">
         <button onClick={handlePrevious} className="join-item btn text-[#7DA640]">«</button>

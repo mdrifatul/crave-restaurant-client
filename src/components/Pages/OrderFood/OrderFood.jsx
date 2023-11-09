@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxiosSecure";
+import Loading from "../Loading/Loading";
 import OrderList from "./OrderList";
 
 const OrderFood = () => {
   const axios = useAxios()
-  const {user} = useAuth()
+  const {user, loading} = useAuth()
   const [orderFood, setOrderFood] = useState([])
 
   useEffect(()=>{
@@ -18,7 +19,7 @@ const OrderFood = () => {
   // const {data,isLoading} = useQuery({
   //   queryKey: ["foodOrder",user?.email],
   //   queryFn: async () =>{
-  //     const res = await axios.get(`https://crave-server.vercel.app/order?email=${user?.email}`)
+  //     const res = await axios.get(`http://localhost:5000/order?email=${user?.email}`)
            
   //     return res?.data
       
@@ -31,12 +32,15 @@ const OrderFood = () => {
   // }
 
   return (
-    <div className="my-10 w-11/12 mx-auto">
-      <Helmet><title>Crave | Order</title></Helmet>
-      { 
+    <div>
+    <Helmet><title>Crave | Order</title></Helmet>
+      <div className="my-10 w-11/12 mx-auto">
+      { loading? <Loading></Loading>:
         orderFood.map(order => <OrderList key={order._id} orderFood={orderFood} setOrderFood={setOrderFood} order={order}></OrderList>)
       }
     </div>
+    </div>
+    
   );
 };
 

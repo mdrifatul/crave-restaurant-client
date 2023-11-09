@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../Pages/AuthProvider/AuthProvider";
+import Loading from './../Pages/Loading/Loading';
 
 
 const PrivateRouter = ({ children }) => {
@@ -8,11 +9,7 @@ const PrivateRouter = ({ children }) => {
   const location = useLocation();
   // console.log(location);
   if (loading) {
-    return (
-      <div className="relative h-screen top-40 left-1/2">
-        <span className="loading loading-bars loading-lg"></span>
-      </div>
-    );
+    return <Loading></Loading>
   }
 
   if (user) {

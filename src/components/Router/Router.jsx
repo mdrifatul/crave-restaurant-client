@@ -31,17 +31,17 @@ const Router = createBrowserRouter([
       {
         path:'/details/:id',
         element: <PrivateRouter><Details></Details></PrivateRouter>,
-        loader: ({params}) => fetch(`https://crave-server.vercel.app/foods/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
       },
       {
         path:'/purchase/:id',
         element: <Purchase></Purchase>,
-        loader: ({params}) => fetch(`https://crave-server.vercel.app/foods/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
       },
       {
         path:'/update/:id',
         element: <Update></Update>,
-        loader: ({params}) => fetch(`https://crave-server.vercel.app/addfoodUpdate/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/addfoodUpdate/${params.id}`)
       },
       {
         path:'/login',
