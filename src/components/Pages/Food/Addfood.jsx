@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxiosSecure";
 
 const Addfood = () => {
@@ -21,7 +22,13 @@ const Addfood = () => {
 
       axios.post('/addFood', userinfo)
       .then(res => {
-        res.data
+         console.log(res.data);
+         Swal.fire({
+            title: 'Success',
+            text: 'Add Successfully',
+            icon: 'success',
+            confirmButtonText: 'Cool'
+          })
       })
       
   }

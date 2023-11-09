@@ -22,7 +22,7 @@ const handleupdate = e =>{
     const date = form.get("date");
     const image = form.get("image")
     const userinfo = {
-    name,email,price, username, quantity, date,image 
+    name,email,price, username, quantity, date,image,
     }
     // console.log(userinfo);
 
