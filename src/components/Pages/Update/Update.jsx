@@ -52,7 +52,7 @@ const handleupdate = e =>{
                       <input type="text" name="name" className="input input-bordered" placeholder="food name" defaultValue={name}/>
                   </div>
                   <div className="form-control">
-                      <input type="number" name="price" className="input input-bordered" placeholder="price" defaultValue={price} readOnly/>
+                      <input type="number" name="price" className="input input-bordered" placeholder="price" defaultValue={price}/>
                   </div>
                   <div className="form-control">
                       <input type="text" name="username" className="input input-bordered" placeholder="user name"  defaultValue={username}/>

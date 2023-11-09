@@ -7,13 +7,13 @@ import AddedFoodCard from "./AddedFoodCard";
 
 const AddedFood = () => {
   const axios = useAxios() 
-  const {loading} = useAuth();
+  const {user, loading} = useAuth();
   const [addedFood, setAddedFood] = useState([]);
 
   useEffect(()=>{
-    axios.get('/addFood')
+    axios.get(`/addFood?email=${user?.email}`)
     .then(res=> setAddedFood(res.data))
-  },[axios])
+  },[axios,user])
 
   return (
     <>

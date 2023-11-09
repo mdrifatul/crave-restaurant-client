@@ -1,9 +1,11 @@
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxiosSecure";
+import useAuth from './../../Hooks/useAuth';
 
 const Addfood = () => {
   const axios = useAxios();
+  const {user} = useAuth();
 
   const handleAddfood = e =>{
     e.preventDefault();
@@ -11,13 +13,13 @@ const Addfood = () => {
       const name = form.get("name")
       const category = form.get("category")
       const price = form.get("price")
-      const username = form.get("username")
+      const email = form.get("email")
       const origin = form.get("origin");
       const quantity = form.get("quantity");
       const image = form.get("image")
       const description = form.get("description")
       const userinfo = {
-      name,price, username, quantity,category, image,description,origin 
+      name,price, email, quantity,category, image,description,origin 
       }
 
       axios.post('/addFood', userinfo)
@@ -52,7 +54,7 @@ const Addfood = () => {
                       <input type="number" name="price" className="input input-bordered" placeholder="price" required/>
                   </div>
                   <div className="form-control">
-                      <input type="text" name="username" className="input input-bordered" placeholder="user name"/>
+                      <input type="email" name="email" className="input input-bordered" placeholder="Email" defaultValue={user?.email} readOnly/>
                   </div>
                   <div className="form-control">
                       <input type="number" name="quantity" className="input input-bordered" placeholder="quantity" />

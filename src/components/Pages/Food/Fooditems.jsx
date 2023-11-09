@@ -32,17 +32,17 @@ const Fooditems = () => {
   const totalpage = [...Array(numberOfpage).keys()]
   console.log(totalpage);
 
-  const handlePrevious = () =>{
-    if(page > 1 ){ 
+   const handlePrevious = () =>{
+     if(page > 1 ){ 
       setPage(page -1);
-    }
-  }
-  const handleNext = () =>{
-    if(page < totalpage){
-      setPage(page +1);
+     }
+   }
+   const handleNext = () =>{
+     if(page < totalpage){
+       setPage(page +1);
       console.log(setPage);
     }
-  }
+   }
 
   const handleClick = () =>{
     const searchvalue = search.toLowerCase();
