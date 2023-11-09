@@ -19,7 +19,7 @@ const OrderFood = () => {
   // const {data,isLoading} = useQuery({
   //   queryKey: ["foodOrder",user?.email],
   //   queryFn: async () =>{
-  //     const res = await axios.get(`http://localhost:5000/order?email=${user?.email}`)
+  //     const res = await axios.get(`https://crave-server.vercel.app/order?email=${user?.email}`)
            
   //     return res?.data
       

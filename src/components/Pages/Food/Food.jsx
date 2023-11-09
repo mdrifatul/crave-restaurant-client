@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Food = ({item}) => {
-  const {_id,food_name, food_image, food_category, price, quantity} = item;
+  const {_id,food_name, food_image, food_category, price} = item;
   return (
     <div data-aos="fade-up">
       <div className="card card-compact bg-white shadow-xl rounded-xl">

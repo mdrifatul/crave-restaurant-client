@@ -34,19 +34,29 @@ const AuthProvider = ({children}) => {
 
   useEffect(() =>{
     const unSubscribe = onAuthStateChanged(auth, (currentUser) =>{
-            const userEmail = currentUser?.email || user?.email
-            const loggedEmail = {email: userEmail};
-            setUser(currentUser);
-            console.log('current user', currentUser);
-            if(currentUser){
-                axios.post('/jwt',loggedEmail)
-                .then(res => {
-                    console.log('token response',res.data);
-                })
-            }else{
-                // delete cookie
-                axios.post('/logout', loggedEmail)
-            }
+            setUser(currentUser);  
+
+            // const userEmail = currentUser?.email || user?.email
+            // const loggedEmail = {email: userEmail};
+            // console.log('current user', currentUser);
+            // if(currentUser){
+            //     axios.post('/jwt',loggedEmail)
+            //     .then(res => {
+            //         console.log('token response',res.data);
+            //     })
+            // }else{
+            //     // delete cookie
+            //     axios.post('/logout', loggedEmail)
+            // }
+
+            axios.post('/jwt', async (req, res) => {
+              const user = req.body;
+              console.log('logging out', user);
+              res
+                  .clearCookie('token', { maxAge: 0, sameSite: 'none', secure: true })
+                  .send({ success: true })
+           })
+
       setLoading(false);
     })
     return () =>{

@@ -9,6 +9,7 @@ const Foods = () => {
   const axios = useAxios();
   const {loading} = useAuth();
   const [food, setFood] = useState([]);
+  console.log(food);
   useEffect(() =>{
     axios.get('/foods?sortField=order_count&sortOrder=desc')
     .then(res=>{
@@ -27,7 +28,7 @@ const Foods = () => {
     :
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-9/12 lg:w-10/12 md:w-9/12 mx-auto my-20">
     {
-    food.slice(0,6).map(item => <Food key={item._id} item={item}></Food>
+    food&&food.slice(0,6).map(item => <Food key={item._id} item={item}></Food>
     )
     }
   </div>

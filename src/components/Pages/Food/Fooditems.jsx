@@ -14,6 +14,8 @@ const Fooditems = () => {
   const [page, setPage] = useState(null)
   const [total , setTotal] = useState(null);
   const limit = 6;
+  console.log(items);
+  console.log(filtervalue);
 
 
   useEffect(() =>{
@@ -25,6 +27,11 @@ const Fooditems = () => {
     })
   },[axios,page,limit])
 
+
+  const numberOfpage = Math.ceil(total/limit)
+  const totalpage = [...Array(numberOfpage).keys()]
+  console.log(totalpage);
+
   const handlePrevious = () =>{
     if(page > 1 ){ 
       setPage(page -1);
@@ -32,16 +39,10 @@ const Fooditems = () => {
   }
   const handleNext = () =>{
     if(page < totalpage){
-      setPage(page + 1);
+      setPage(page +1);
+      console.log(setPage);
     }
   }
-
-  // const totalpage = Math.ceil(total / limit)
-  // console.log(totalpage);
-
-  const numberOfpage = Math.ceil(total/limit)
-  const totalpage = [...Array(numberOfpage).keys()]
-  console.log(totalpage);
 
   const handleClick = () =>{
     const searchvalue = search.toLowerCase();
@@ -62,10 +63,10 @@ const Fooditems = () => {
       {loading? <Loading></Loading>:
         <div className="grid grid-cols-3 gap-6 w-10/12 mx-auto my-20">
       {
-        filtervalue == "" ?
-        items.map((item)=> <FoodCard item={item} key={item._id}></FoodCard>)
+        filtervalue&&filtervalue == "" ?
+        items&&items.map((item)=> <FoodCard item={item} key={item._id}></FoodCard>)
         : 
-        filtervalue.map(item => <FoodCard item={item} key={item._id}></FoodCard>)
+        filtervalue&&filtervalue.map(item => <FoodCard item={item} key={item._id}></FoodCard>)
       }
       </div>
       }
