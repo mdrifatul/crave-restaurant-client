@@ -9,10 +9,10 @@ const Fooditems = () => {
   const axios = useAxios();
   const {loading} = useAuth();
   const [items, setItems]  = useState([]);
+  const [total , setTotal] = useState(null);
   const [search, setSearch] = useState('');
   const [filtervalue, setFiltervalue] = useState([])
   const [page, setPage] = useState(1)
-  const [total , setTotal] = useState(null);
   const limit = 6;
   console.log(items);
   console.log(filtervalue);
@@ -34,13 +34,13 @@ const Fooditems = () => {
 
    const handlePrevious = () =>{
      if(page > 1 ){ 
-      setPage(page -1);
+      setPage("prev",page -1);
      }
    }
    const handleNext = () =>{
      if(page < totalpage.length){
        setPage(page +1);
-       console.log("next page:",page + 1);
+       console.log("next ",page + 1);
     }
    }
 
